@@ -20,3 +20,7 @@ models:
 
 on-run-start:
   - "{{ log('Run type: ' + flags.WHICH, info=True) }}"
+  - "{{ log('Pre-hook: on-run-start', info=True) }}"
+
+on-run-end:
+  - "{{ log('Post-hook: on-run-end', info=True) }}"
