@@ -1,0 +1,26 @@
+name: 'dbt_debug'
+version: '1.0.0'
+
+profile: 'dbt_debug'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: [macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_debug:
+      +materialized: view
+
+on-run-start:
+  - "{{ log('Run type: ' + flags.WHICH, info=True) }}"
+  - "{{ log('Pre-hook: on-run-start', info=True) }}"
+
+on-run-end:
+  - "{{ log('Post-hook: on-run-end', info=True) }}"
